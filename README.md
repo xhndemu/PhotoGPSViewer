@@ -20,7 +20,7 @@
 
 天地图需要免费 token，否则只能看到高德图层。
 
-1. 访问 https://console.tianditu.gov.cn/api/key 注册并创建应用（应用类型选「浏览器端」即可）
+1. 访问 http://lbs.tianditu.gov.cn/ 注册并创建应用（应用类型选「浏览器端」即可）
 2. 复制 token
 3. 在 PhotoGPSViewer 中点击工具栏「⚙ 设置」，粘贴 token，点「确定」
 4. Token 保存在 `C:\Users\<你的用户名>\.photo_gps_viewer.cfg`，重启仍然生效
@@ -29,7 +29,7 @@
 
 - `.jpg` / `.jpeg`
 - `.tif` / `.tiff`
-- `.heic` / `.heif`（EXIF 可读，但**预览图可能空白**，需要额外解码库）
+- `.heic` / `.heif`（内置 pillow-heif 解码，可正常预览；EXIF 中的 GPS 与拍摄方向也能读取）
 
 ## 拍摄方向（FoV 三角形）说明
 
@@ -57,7 +57,7 @@ A: 检查网络，高德/天地图瓦片需要联网加载。
 A: 这是坐标偏移问题。本程序已对高德（GCJ02）和天地图（WGS84）做了自动处理，无需手动设置。
 
 **Q: HEIC 照片显示不出预览？**
-A: 当前版本未集成 HEIC 解码库，只读 EXIF。EXIF 正常就能定位。
+A: v0.11 已内置 pillow-heif，理论上 Windows 7+ 都能正常预览。如仍失败，可重新下载 ZIP 解压到新目录后运行（排除旧的 `_internal` DLL 被替换造成的兼容问题）。
 
 **Q: 怎么完全卸载？**
 A: 删除 PhotoGPSViewer 文件夹即可，没有任何注册表或系统残留（配置在用户目录 `.photo_gps_viewer.cfg` 可选删除）。
